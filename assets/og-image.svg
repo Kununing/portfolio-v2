@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#8b7cff" stroke-opacity=".16"/>
+    </pattern>
+    <radialGradient id="glow" cx="75%" cy="25%" r="55%">
+      <stop offset="0" stop-color="#67e8df" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#67e8df" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#07091d"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <circle cx="104" cy="94" r="36" fill="#67e8df"/>
+  <text x="104" y="103" text-anchor="middle" fill="#07091d" font-family="Arial, sans-serif" font-size="21" font-weight="700">KS</text>
+  <text x="166" y="103" fill="#f6f3ff" font-family="Arial, sans-serif" font-size="25" font-weight="700">Kanan Singla / Signal Lab</text>
+  <text x="90" y="250" fill="#f6f3ff" font-family="Arial Narrow, Arial, sans-serif" font-size="78" font-weight="700">Calm inside complex systems.</text>
+  <text x="94" y="350" fill="#aeb8d8" font-family="Arial, sans-serif" font-size="27">Applied AI &#183; Backend engineering &#183; Reliable outcomes</text>
+  <path d="M825 490C900 410 977 535 1089 396" fill="none" stroke="#67e8df" stroke-opacity=".56" stroke-width="3" stroke-dasharray="8 11"/>
+  <circle cx="825" cy="490" r="13" fill="#ff668f"/>
+  <circle cx="1089" cy="396" r="13" fill="#67e8df"/>
+</svg>
