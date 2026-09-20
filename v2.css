@@ -263,9 +263,22 @@ html.v2 {
 }
 
 .v2 .signal-readout {
-  border-color: var(--cyan);
+  position: static;
+  width: auto;
+  inset: auto;
+  padding: 18px 22px;
+  border-top: 1px solid rgba(190, 202, 255, 0.15);
+  border-left: 3px solid var(--cyan);
   background: rgba(8, 11, 34, 0.92);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: none;
+}
+
+.v2 .readout-title {
+  font-size: 17px;
+}
+
+.v2 .readout-copy {
+  font-size: 13px;
 }
 
 .v2 .readout-copy,
@@ -441,6 +454,126 @@ html.v2 {
   color: var(--cyan);
 }
 
+.v2 .site-header nav a.is-current {
+  color: var(--cyan);
+}
+
+.v2 .site-header nav a:not(.nav-contact).is-current {
+  position: relative;
+}
+
+.v2 .site-header nav a:not(.nav-contact).is-current::after {
+  position: absolute;
+  right: 0;
+  bottom: -7px;
+  left: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--cyan);
+  box-shadow: 0 0 12px rgba(103, 232, 223, 0.7);
+  content: "";
+}
+
+.v2 .nav-contact.is-current {
+  border-color: var(--cyan);
+  color: #050817;
+  background: var(--cyan);
+}
+
+.v2 .skill-index {
+  margin-right: 10px;
+  color: var(--ink-soft);
+  font-family: var(--body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.v2 .skill-map h3 {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 24px;
+  color: var(--cyan);
+  font-size: 20px;
+}
+
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  max-width: 460px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-chips li {
+  padding: 7px 13px;
+  border: 1px solid rgba(190, 202, 255, 0.26);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.035);
+  font-size: 13px;
+  font-weight: 560;
+  line-height: 1.2;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.skill-chips li:hover {
+  border-color: rgba(103, 232, 223, 0.6);
+  background: rgba(103, 232, 223, 0.09);
+  transform: translateY(-2px);
+}
+
+.contact-channel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.contact-channel .email-link {
+  margin-top: 0;
+}
+
+.phone-link {
+  color: var(--cyan);
+  font-family: var(--display);
+  font-size: clamp(19px, 2.2vw, 27px);
+  font-weight: 650;
+}
+
+.copy-button {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border: 1px solid rgba(103, 232, 223, 0.45);
+  border-radius: 999px;
+  color: var(--cyan);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 620;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.copy-button:hover {
+  color: #050817;
+  background: var(--cyan);
+}
+
+.copy-button.is-copied {
+  border-color: var(--cyan);
+  color: #050817;
+  background: var(--cyan);
+}
+
+.copy-status {
+  min-height: 18px;
+  margin: 14px 0 0;
+  color: var(--cyan);
+  font-size: 13px;
+}
+
 .v2 footer {
   color: var(--ink-soft);
 }
@@ -468,6 +601,22 @@ html.v2 {
   .v2 .case-study,
   .v2 .project {
     transform: none !important;
+  }
+
+  .v2 .site-header nav a:not(.nav-contact).is-current::after {
+    display: none;
+  }
+
+  .v2 .site-header nav a.is-current {
+    background: rgba(103, 232, 223, 0.09);
+  }
+
+  .skill-chips {
+    max-width: none;
+  }
+
+  .contact-channel {
+    gap: 12px;
   }
 }
 

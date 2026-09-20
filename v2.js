@@ -50,6 +50,95 @@ if (finePointer.matches && !calmMotion.matches) {
   });
 }
 
+const navLinks = Array.from(
+  document.querySelectorAll("#primary-nav a[href^='#']")
+);
+const sections = navLinks
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+if (sections.length) {
+  const setCurrent = (id) => {
+    navLinks.forEach((link) => {
+      const active = link.getAttribute("href") === `#${id}`;
+      link.classList.toggle("is-current", active);
+      if (active) {
+        link.setAttribute("aria-current", "true");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  const spy = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) {
+        setCurrent(visible.target.id);
+      }
+    },
+    { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.2, 0.5, 1] }
+  );
+
+  sections.forEach((section) => spy.observe(section));
+}
+
+async function copyText(value) {
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+      return true;
+    }
+  } catch {
+    // fall through to the textarea path below
+  }
+
+  const scratch = document.createElement("textarea");
+  scratch.value = value;
+  scratch.setAttribute("readonly", "");
+  scratch.style.position = "fixed";
+  scratch.style.opacity = "0";
+  document.body.appendChild(scratch);
+  scratch.select();
+
+  let copied = false;
+  try {
+    copied = document.execCommand("copy");
+  } catch {
+    copied = false;
+  }
+  scratch.remove();
+  return copied;
+}
+
+const copyStatus = document.querySelector(".copy-status");
+
+document.querySelectorAll(".copy-button").forEach((button) => {
+  let resetTimer;
+  button.addEventListener("click", async () => {
+    const value = button.dataset.copy || "";
+    const label = button.dataset.label || button.textContent.trim();
+    const copied = await copyText(value);
+
+    window.clearTimeout(resetTimer);
+    button.classList.toggle("is-copied", copied);
+    button.textContent = copied ? "Copied" : "Press Ctrl+C";
+    if (copyStatus) {
+      copyStatus.textContent = copied
+        ? `${value} copied to clipboard.`
+        : `Could not copy automatically — ${value}`;
+    }
+
+    resetTimer = window.setTimeout(() => {
+      button.classList.remove("is-copied");
+      button.textContent = label;
+      if (copyStatus) copyStatus.textContent = "";
+    }, 2400);
+  });
+});
+
 document.addEventListener("pointerdown", (event) => {
   if (calmMotion.matches || event.pointerType === "touch") return;
   const interactive = event.target.closest("a, button");
